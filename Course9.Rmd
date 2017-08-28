@@ -1,0 +1,35 @@
+---
+title: "Coursera - Developing Data Products "
+output: html_document
+---
+
+**Peer-graded Assignment: R Markdown and Leaflet**
+
+*Mohammed Zewid*
+
+*2017*
+
+##Load 'Leaflet' Library
+```{r}
+library(leaflet)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r}
+checkins <- data.frame(names = c("FH Technikum Wien", "Austrian Institute of Technology", "Erste Group Bank AG"),
+                       lat = c(48.23917668155189, 48.26771433031891, 48.21459552169194),
+                       long = c(16.377724522257136, 16.427057266942317, 16.369484476889117),
+                       address = c("H??chst??dtplatz 6", "Giefinggasse 2", "Werdertorgasse 5"))
+
+checkins %>%
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(~long, ~lat,
+            popup = paste0("<b>", checkins$names, "</b><br>", checkins$address),
+            options = popupOptions(closeButton = FALSE))
+```
+
+
